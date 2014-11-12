@@ -1,0 +1,28 @@
+{{#link-to 'about' class="whatever class" tagName="li"}}{{link-to}}
+<img {{bind-attr src='logo'}}>
+
+
+every template has a controller where it gets variable and properties from
+App.NoteController = Ember.Controller.extend({
+	propert1: 2,
+	property2: function(){
+	return c;
+	}.property()
+});
+
+
+Level 3-
+#this.resource('someroute');     ---it has resource meaning properties variable etc
+
+
+#Routes extract data from external sources and give to controller or template
+#Routes give back data in model property which is either an object or an Array
+
+
+3B-
+#linkin to a particular notes-
+{{#link-to 'notes' this}}   --this keyword knows what param to send according to the router
+
+3C-
+#nesting templates and routers.
+#nest routes another one. and call in template by {{outlet}}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Notes Maker</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/bootstap.css">
+</head>
+<body>
+
+<script type="text/x-handlebars" data-template-name='application'>
+  <nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Note Maker</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>{{#link-to 'index'}}Home{{/link-to}}</li>
+        <li>{{#link-to 'notes'}}Note{{/link-to}}</li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+  </nav>
+
+  {{outlet}}
+
+</script>
+
+<script type="text/x-handlebars" data-template-name='index'>
+  <h1> There are {{notesCount}} notes.</h1>
+  {{#link-to 'notes.today'}}Notes For Today{{/link-to}}
+</script>
+
+<script type="text/x-handlebars" data-template-name='notes'>
+  <div class="row">
+    <div class="col-md-3">
+       {{#each model}}
+        <h4>{{#link-to 'note' this }}
+          {{title}}
+        {{/link-to}}</h4>
+      {{/each}}
+    </div>
+    <div class="col-md-9">
+      {{outlet}}
+    </div>
+</script>
+
+<script type="text/x-handlebars" data-template-name='notes/today'>
+  <div class="row">
+    <p>Your Today Notes are</p>
+    <div class="col-md-9">
+      {{#each model}}
+        {{title}}<br>
+      {{/each}}
+    </div>
+  </div>
+</script>
+
+<script type="text/x-handlebars" data-template-name='note'>
+  {{title}}<br>
+  {{description}}
+  <br>
+  <hr>
+  <h3>Tags</h3>
+  {{#each tag in tags}}
+    {{tag.name}}<span>,</span>
+  {{else}}
+    <p>No tags, add one</p>
+  {{/each}}
+</script>
+
+
+<script type="text/x-handlebars" data-template-name='notes/index'>
+Click left on any Notes
+</script>
+
+
+  <script src="js/libs/jquery-1.10.2.js"></script>
+  <script src="js/libs/handlebars-v1.3.0.js"></script>
+  <script src="js/libs/ember-1.8.0.js"></script>
+  <script src="js/libs/ember-data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
